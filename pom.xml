@@ -8,12 +8,20 @@
     <artifactId>cayenne-maven-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <main.class>org.apache.cayenne.demo.Main</main.class>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.cayenne</groupId>
             <artifactId>cayenne-server</artifactId>
-            <version>4.0.M6-SNAPSHOT</version>
+            <version>4.0.M5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cayenne</groupId>
+            <artifactId>cayenne-java8</artifactId>
+            <version>4.0.M5</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -52,17 +60,49 @@
 
                     <!-- cdbimport settings -->
                     <dbImport>
-                        <defaultPackage>org.apache.cayenne.demo</defaultPackage>
+                        <defaultPackage>org.apache.cayenne.demo.model</defaultPackage>
 
                         <catalog>
-                            <name>test2</name>
+                            <name>demo</name>
                             <excludeTable>AUTO_PK_SUPPORT</excludeTable>
                             <excludeTable>^table.*</excludeTable>
-                            <!--<excludeColumn>test</excludeColumn>-->
+                            <excludeColumn>test</excludeColumn>
                         </catalog>
                     </dbImport>
 
                 </configuration>
+            </plugin>
+
+            <!-- Additional configuration of Maven required for this demo -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <!-- This plugin will create executable standalone jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>${main.class}</mainClass>
+                        </transformer>
+                    </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

@@ -10,18 +10,19 @@
 
     <properties>
         <main.class>org.apache.cayenne.demo.Main</main.class>
+        <cayenne.version>4.0.RC1</cayenne.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.cayenne</groupId>
             <artifactId>cayenne-server</artifactId>
-            <version>4.0.B1</version>
+            <version>${cayenne.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cayenne</groupId>
             <artifactId>cayenne-java8</artifactId>
-            <version>4.0.B1</version>
+            <version>${cayenne.version}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -35,7 +36,7 @@
             <plugin>
                 <groupId>org.apache.cayenne.plugins</groupId>
                 <artifactId>cayenne-maven-plugin</artifactId>
-                <version>4.0.B1</version>
+                <version>${cayenne.version}</version>
 
                 <dependencies>
                     <dependency>

@@ -10,7 +10,8 @@
 
     <properties>
         <main.class>org.apache.cayenne.demo.Main</main.class>
-        <cayenne.version>4.0.RC1</cayenne.version>
+        <cayenne.version>4.0.1</cayenne.version>
+        <mysql.version>8.0.13</mysql.version>
     </properties>
 
     <dependencies>
@@ -27,7 +28,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.5</version>
+            <version>${mysql.version}</version>
         </dependency>
     </dependencies>
 
@@ -42,15 +43,15 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>6.0.5</version>
+                        <version>${mysql.version}</version>
                     </dependency>
                 </dependencies>
 
                 <configuration>
                     <map>${project.basedir}/src/main/resources/demo.map.xml</map>
                     <dataSource>
-                        <url>jdbc:mysql://localhost/test2?nullNamePatternMatchesAll=true&amp;useSSL=false</url>
-                        <driver>com.mysql.jdbc.Driver</driver>
+                        <url>jdbc:mysql://localhost/test2?nullNamePatternMatchesAll=true</url>
+                        <driver>com.mysql.cj.jdbc.Driver</driver>
                         <username>root</username>
                         <password>testpwd</password>
                     </dataSource>

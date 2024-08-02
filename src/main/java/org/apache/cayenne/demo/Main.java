@@ -3,20 +3,29 @@ package org.apache.cayenne.demo;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.mysql.cj.jdbc.Driver;
 import org.apache.cayenne.ObjectContext;
-import org.apache.cayenne.configuration.server.ServerRuntime;
+import org.apache.cayenne.datasource.DataSourceBuilder;
 import org.apache.cayenne.demo.model.Artist;
 import org.apache.cayenne.demo.model.Gallery;
 import org.apache.cayenne.demo.model.Painting;
 import org.apache.cayenne.query.ObjectSelect;
+import org.apache.cayenne.runtime.CayenneRuntime;
 
 public class Main {
 
     public static void main(String[] args) {
 
         // starting Cayenne
-        ServerRuntime cayenneRuntime = ServerRuntime.builder()
+        CayenneRuntime cayenneRuntime = CayenneRuntime.builder()
                 .addConfig("cayenne-project.xml")
+                .dataSource(DataSourceBuilder
+                        .url("jdbc:mysql://localhost/demo?nullNamePatternMatchesAll=true")
+                        .driver(Driver.class.getName())
+                        .userName("root")
+                        .password("testpwd")
+                        .pool(1, 5)
+                        .build())
                 .build();
 
         // getting a hold of ObjectContext

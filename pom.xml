@@ -11,8 +11,8 @@
     <properties>
         <main.class>org.apache.cayenne.demo.Main</main.class>
         <maven.compiler.release>11</maven.compiler.release>
-        <cayenne.version>5.0-SNAPSHOT</cayenne.version>
-        <mysql.version>8.4.0</mysql.version>
+        <cayenne.version>5.0-M1</cayenne.version>
+        <mysql.version>9.1.0</mysql.version>
     </properties>
 
     <repositories>
